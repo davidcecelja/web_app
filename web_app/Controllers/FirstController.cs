@@ -37,5 +37,9 @@ namespace web_app.Controllers
         {
             return DateTime.Now.ToString();
         }
+        public string ImePrezime()
+        {
+            return "David Cecelja";
+        }
     }
 }
