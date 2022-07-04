@@ -28,7 +28,7 @@ namespace web_app.Controllers
         }
         public ActionResult Student()
         {
-            ViewBag.Ime = "David";
+            ViewBag.Ime = "Ana";
             ViewBag.Prezime = "Cecelja";
             ViewBag.GodRodjenja = 1983;
             return View();
