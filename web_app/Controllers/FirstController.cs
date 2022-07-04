@@ -33,5 +33,9 @@ namespace web_app.Controllers
             ViewBag.GodRodjenja = 1983;
             return View();
         }
+        public string VratiVrijeme()
+        {
+            return DateTime.Now.ToString();
+        }
     }
 }
