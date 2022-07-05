@@ -169,6 +169,7 @@
     <Content Include="Views\Studenti\Index.cshtml" />
     <Content Include="Views\Studenti\Popis.cshtml" />
     <Content Include="Views\Studenti\Detalji.cshtml" />
+    <Content Include="Views\Studenti\Azuriraj.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

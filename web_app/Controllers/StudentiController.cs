@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Net;
 
 namespace web_app.Controllers
 {
@@ -32,6 +33,21 @@ namespace web_app.Controllers
             if(student == null)
             {
                 return RedirectToAction("Popis");
+            }
+            return View(student);
+        }
+        public ActionResult Azuriraj(int? id)
+        {
+            if (!id.HasValue)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            
+            StudentiDB studentidb = new StudentiDB();
+            Student student = studentidb.VratiListu().FirstOrDefault(x => x.Id == id);
+            if (student == null)
+            {
+                return HttpNotFound();
             }
             return View(student);
         }
