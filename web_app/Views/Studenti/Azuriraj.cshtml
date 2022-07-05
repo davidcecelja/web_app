@@ -9,7 +9,66 @@
 <h3>@Model.Ime @Model.Prezime</h3>
 
 @using (Html.BeginForm())
-            {
-
-            }
+ {
+    @Html.AntiForgeryToken()
+<table>
+    <tr>
+        <td>@Html.LabelFor(model => model.Id)</td>
+        <td>@Html.TextBoxFor(model => model.Id, new { disabled = true })</td>
+    </tr>
+    <tr>
+        <td>
+            @Html.LabelFor(model => model.Ime)
+            @Html.ValidationMessageFor(model => model.Ime)
+        </td>
+    </tr>
+    <tr>
+        <td>@Html.LabelFor(model => model.Prezime)</td>
+        <td>
+            @Html.TextBoxFor(model => model.Prezime)
+            @Html.ValidationMessageFor(model => model.Prezime)
+        </td>
+    </tr>
+    <tr>
+        <td>@Html.LabelFor(model => model.Spol)</td>
+        <td>
+            @Html.RadioButtonFor(model => model.Spol, 'M') Muški
+            @Html.RadioButtonFor(model => model.Spol, 'Z') Ženski
+            @Html.ValidationMessageFor(model => model.Spol)
+        </td>
+    </tr>
+    <tr>
+        <td>@Html.LabelFor(model => model.DatumRodjenja)</td>
+        <td>
+            @Html.EditorFor(model => model.DatumRodjenja)
+            @Html.ValidationMessageFor(model => model.DatumRodjenja)
+        </td>
+    </tr>
+    <tr>
+        <td>@Html.LabelFor(model => model.Oib)</td>
+        <td>
+            @Html.TextBoxFor(model => model.Oib)
+            @Html.ValidationMessageFor(model => model.Oib)
+        </td>
+    </tr>
+    <tr>
+        <td>@Html.LabelFor(model => model.GodinaStudija)</td>
+        <td>
+            @Html.EnumDropDownListFor(model => model.GodinaStudija)
+            @Html.ValidationMessageFor(model => model.GodinaStudija)
+        </td>
+    </tr>
+    <tr>
+        <td>@Html.LabelFor(model => model.RedovanStudent)</td>
+        <td>
+            @Html.CheckBoxFor(model => model.RedovanStudent)
+            @Html.ValidationMessageFor(model => model.RedovanStudent)
+        </td>
+    </tr>
+    </table>
+    @Html.ValidationSummary(true, "Spremanje nije uspjelo!");
+    <p><input type="submit" value="Spremi"/></p>
+    @Html.ActionLink("Povratak bez spremanja", "Popis", "Studenti")
+             
+ }
 
