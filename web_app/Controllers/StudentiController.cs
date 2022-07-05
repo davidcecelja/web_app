@@ -51,5 +51,17 @@ namespace web_app.Controllers
             }
             return View(student);
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Azuriraj(Student s)
+        {
+            if (ModelState.IsValid)
+            {
+                StudentiDB studentidb = new StudentiDB();
+                studentidb.AzurirajStudenta(s);
+                return RedirectToAction("Popis");
+            }
+            return View(s);
+        }
     }
 }

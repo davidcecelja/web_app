@@ -17,8 +17,9 @@
         <td>@Html.TextBoxFor(model => model.Id, new { disabled = true })</td>
     </tr>
     <tr>
+        <td>@Html.LabelFor(model => model.Ime)</td>
         <td>
-            @Html.LabelFor(model => model.Ime)
+            @Html.TextBoxFor(model => model.Ime)
             @Html.ValidationMessageFor(model => model.Ime)
         </td>
     </tr>
