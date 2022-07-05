@@ -13,7 +13,7 @@ namespace web_app.Models
         public char Spol { get; set; }
         public string Oib { get; set; }
         public DateTime DatumRodjenja { get; set; }
-        public int GodinaStudija { get; set; }
+        public GodinaStudija GodinaStudija { get; set; }
         public bool RedovanStudent { get; set; }
     }
 }

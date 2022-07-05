@@ -13,7 +13,8 @@
         <th>Ime</th>
         <th>Oib</th>
         <th>Redovan</th>
-        <th>Detalji</th>   
+        <th>Detalji</th>
+        <th>Ažuriranje</th>
     </tr>
     @foreach (var student in Model.VratiListu()) 
     { 
@@ -24,6 +25,7 @@
         <td>@student.Oib</td>
         <td>@Html.CheckBox("redovan", student.RedovanStudent)</td>
         <td>@Html.ActionLink("info", "Detalji", new { id = student.Id })</td>
+        <td>@Html.ActionLink("Ažuriraj", "Azuriraj", new { id = student.Id })</td>
     </tr>
     }
 </table>
