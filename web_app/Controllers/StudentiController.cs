@@ -55,6 +55,10 @@ namespace web_app.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Azuriraj(Student s)
         {
+            if (!OIB.CheckOIB(s.Oib))
+            {
+                ModelState.AddModelError("Oib", "Neispravan OIB");
+            }
             if (ModelState.IsValid)
             {
                 StudentiDB studentidb = new StudentiDB();
