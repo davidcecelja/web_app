@@ -59,6 +59,11 @@ namespace web_app.Controllers
             {
                 ModelState.AddModelError("Oib", "Neispravan OIB");
             }
+            DateTime punoljetan = DateTime.Now.AddYears(-18);
+            if(s.DatumRodjenja > punoljetan)
+            {
+                ModelState.AddModelError("DatumRodjenja", "Osoba nije punoljetna");
+            }
             if (ModelState.IsValid)
             {
                 StudentiDB studentidb = new StudentiDB();

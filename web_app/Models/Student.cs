@@ -40,5 +40,10 @@ namespace web_app.Models
 
         [Display(Name = "Redovan student")]
         public bool RedovanStudent { get; set; }
+
+        [Display(Name = "Broj upisanih kolegija")]
+        [Required(ErrorMessage = "{0} je obavezan")]
+        [Range(1, 8, ErrorMessage = "{0} mora biti između {1} i {2}")]
+        public int BrojUpisanihKolegija { get; set; }
     }
 }
