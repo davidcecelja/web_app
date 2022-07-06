@@ -67,7 +67,14 @@
             @Html.ValidationMessageFor(model => model.RedovanStudent)
         </td>
     </tr>
-    </table>
+    <tr>
+        <td>@Html.LabelFor(model => model.BrojUpisanihKolegija)</td>
+        <td>
+            @Html.TextBoxFor(model => model.BrojUpisanihKolegija)
+            @Html.ValidationMessageFor(model => model.BrojUpisanihKolegija)
+        </td>
+    </tr>
+</table>
     @Html.ValidationSummary(true, "Spremanje nije uspjelo!");
     <p><input type="submit" value="Spremi"/></p>
     @Html.ActionLink("Povratak bez spremanja", "Popis", "Studenti")
