@@ -20,7 +20,7 @@ namespace web_app.Models
                     Prezime = "Ivić",
                     Ime = "Petar",
                     DatumRodjenja = new DateTime(1995, 10, 15),
-                    Spol = 'M',
+                    Spol = "M",
                     GodinaStudija = GodinaStudija.Druga,
                     Oib = "12345678911",
                     RedovanStudent = false
@@ -31,7 +31,7 @@ namespace web_app.Models
                     Prezime = "Marić",
                     Ime = "Marko",
                     DatumRodjenja = new DateTime(1994, 9, 11),
-                    Spol = 'M',
+                    Spol = "M",
                     GodinaStudija = GodinaStudija.Treca,
                     Oib = "12345678914",
                     RedovanStudent = true
@@ -42,7 +42,7 @@ namespace web_app.Models
                     Prezime = "Tomić",
                     Ime = "Ana",
                     DatumRodjenja = new DateTime(1995, 7, 18),
-                    Spol = 'Ž',
+                    Spol = "Z",
                     GodinaStudija = GodinaStudija.Prva,
                     Oib = "12345678919",
                     RedovanStudent = true
@@ -53,7 +53,7 @@ namespace web_app.Models
                     Prezime = "Šerić",
                     Ime = "Karlo",
                     DatumRodjenja = new DateTime(1993, 11, 15),
-                    Spol = 'M',
+                    Spol = "M",
                     GodinaStudija = GodinaStudija.Peta,
                     Oib = "12345678910",
                     RedovanStudent = true

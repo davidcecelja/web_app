@@ -180,6 +180,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\BazaDbContext.cs" />
     <Compile Include="Models\GodinaStudija.cs" />
     <Compile Include="Models\OIB.cs" />
     <Compile Include="Models\Student.cs" />
