@@ -28,8 +28,7 @@ namespace web_app.Controllers
             {
                 return RedirectToAction("Popis");
             }
-            StudentiDB studentidb = new StudentiDB();
-            Student student = studentidb.VratiListu().FirstOrDefault(x => x.Id == id);
+            Student student = bazaPodataka.PopisStudenata.FirstOrDefault(x => x.Id == id);
             if(student == null)
             {
                 return RedirectToAction("Popis");
@@ -43,8 +42,7 @@ namespace web_app.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             
-            StudentiDB studentidb = new StudentiDB();
-            Student student = studentidb.VratiListu().FirstOrDefault(x => x.Id == id);
+            Student student = bazaPodataka.PopisStudenata.FirstOrDefault(x => x.Id == id);
             if (student == null)
             {
                 return HttpNotFound();
@@ -66,8 +64,8 @@ namespace web_app.Controllers
             }
             if (ModelState.IsValid)
             {
-                StudentiDB studentidb = new StudentiDB();
-                studentidb.AzurirajStudenta(s);
+                bazaPodataka.Entry(s).State = System.Data.Entity.EntityState.Modified;
+                bazaPodataka.SaveChanges();
                 return RedirectToAction("Popis");
             }
             return View(s);
