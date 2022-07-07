@@ -6,6 +6,9 @@
 }
 
 <h2>Popis</h2>
+@Html.ActionLink("Kreiranje novog studenta", "Azuriraj")
+<br />
+<br />
 <table border="1">
     <tr>
         <th>Id</th>
@@ -16,16 +19,16 @@
         <th>Detalji</th>
         <th>Ažuriranje</th>
     </tr>
-    @foreach (var student in Model) 
-    { 
-    <tr>
-        <td>@student.Id</td>
-        <td>@student.Prezime</td>
-        <td>@student.Ime</td>
-        <td>@student.Oib</td>
-        <td>@Html.CheckBox("redovan", student.RedovanStudent)</td>
-        <td>@Html.ActionLink("info", "Detalji", new { id = student.Id })</td>
-        <td>@Html.ActionLink("Ažuriraj", "Azuriraj", new { id = student.Id })</td>
-    </tr>
+    @foreach (var student in Model)
+    {
+        <tr>
+            <td>@student.Id</td>
+            <td>@student.Prezime</td>
+            <td>@student.Ime</td>
+            <td>@student.Oib</td>
+            <td>@Html.CheckBox("redovan", student.RedovanStudent)</td>
+            <td>@Html.ActionLink("info", "Detalji", new { id = student.Id })</td>
+            <td>@Html.ActionLink("Ažuriraj", "Azuriraj", new { id = student.Id })</td>
+        </tr>
     }
 </table>

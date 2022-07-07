@@ -70,11 +70,29 @@ namespace web_app.Controllers
             {
                 ModelState.AddModelError("DatumRodjenja", "Osoba nije punoljetna");
             }
+
             if (ModelState.IsValid)
             {
-                bazaPodataka.Entry(s).State = System.Data.Entity.EntityState.Modified;
+                if (s.Id != 0)
+                {
+                    bazaPodataka.Entry(s).State = System.Data.Entity.EntityState.Modified;
+                }
+                else
+                {
+                    bazaPodataka.PopisStudenata.Add(s);
+                }
                 bazaPodataka.SaveChanges();
                 return RedirectToAction("Popis");
+            }
+            if(s.Id == 0)
+            {
+                ViewBag.Title = "Kreiranje studenta";
+                ViewBag.Novi = true;
+            }
+            else
+            {
+                ViewBag.Title = "Ažuriranje podataka o studentu";
+                ViewBag.Novi = false;
             }
             return View(s);
         }
