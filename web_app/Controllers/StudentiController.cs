@@ -37,18 +37,26 @@ namespace web_app.Controllers
         }
         public ActionResult Azuriraj(int? id)
         {
+            Student student = null;
             if (!id.HasValue)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                student = new Student();
+                ViewBag.Title = "Kreiranje studenta";
+                ViewBag.Novi = true;
             }
-            
-            Student student = bazaPodataka.PopisStudenata.FirstOrDefault(x => x.Id == id);
-            if (student == null)
+            else
             {
-                return HttpNotFound();
-            }
+                student = bazaPodataka.PopisStudenata.FirstOrDefault(x => x.Id == id);
+                if (student == null)
+                {
+                    return HttpNotFound();
+                }
+                ViewBag.Title = "Ažuriranje podataka o studentu";
+                ViewBag.Novi = false;
+            }    
             return View(student);
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Azuriraj(Student s)
