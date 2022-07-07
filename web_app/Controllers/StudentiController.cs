@@ -10,7 +10,7 @@ namespace web_app.Controllers
 {
     public class StudentiController : Controller
     {
-        // GET: Studenti
+        BazaDbContext bazaPodataka = new BazaDbContext();
         public ActionResult Index()
         {
             ViewBag.Title = "O Studentima";
@@ -19,8 +19,8 @@ namespace web_app.Controllers
         }
         public ActionResult Popis()
         {
-            StudentiDB studentidb = new StudentiDB();
-            return View(studentidb);
+            var studenti = bazaPodataka.PopisStudenata.ToList();
+            return View(studenti);
         }
         public ActionResult Detalji(int? id)
         {
