@@ -17,9 +17,17 @@ namespace web_app.Controllers
             ViewBag.Fakultet = "MEV";
             return View();
         }
-        public ActionResult Popis()
+        public ActionResult Popis(string naziv, string spol)
         {
             var studenti = bazaPodataka.PopisStudenata.ToList();
+            if (!String.IsNullOrWhiteSpace(naziv))
+            {
+                studenti = studenti.Where(x => x.PrezimeIme.ToUpper().Contains(naziv.ToUpper())).ToList();
+            }
+            if (!String.IsNullOrWhiteSpace(spol))
+            {
+                studenti = studenti.Where(x => x.Spol == spol).ToList();
+            }
             return View(studenti);
         }
         public ActionResult Detalji(int? id)
@@ -108,7 +116,7 @@ namespace web_app.Controllers
                 return HttpNotFound();
             }
             ViewBag.Title = "Potvrda brisanja studenta";
-            return View();
+            return View(s);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
