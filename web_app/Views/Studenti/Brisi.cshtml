@@ -1,0 +1,19 @@
+﻿@using web_app.Models
+@model Student
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+Jeste li sigurni da želite izbriasti studenta @Model.PrezimeIme (OIB: @Model.Oib) ?
+
+@using (Html.BeginForm("Brisi", "Studenti"))
+{
+    @Html.AntiForgeryToken();
+    <input type="submit" value="Izbriši" />
+    <br />
+    <br />
+    @Html.ActionLink("Odustani", "Popis");
+}
+

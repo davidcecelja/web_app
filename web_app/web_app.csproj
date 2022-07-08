@@ -231,6 +231,7 @@
     <Content Include="Views\Studenti\Popis.cshtml" />
     <Content Include="Views\Studenti\Detalji.cshtml" />
     <Content Include="Views\Studenti\Azuriraj.cshtml" />
+    <Content Include="Views\Studenti\Brisi.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

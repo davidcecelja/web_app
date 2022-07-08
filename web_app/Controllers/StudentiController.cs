@@ -96,5 +96,19 @@ namespace web_app.Controllers
             }
             return View(s);
         }
+        public ActionResult Brisi(int? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction("Popis");
+            }
+            Student s = bazaPodataka.PopisStudenata.FirstOrDefault(x => x.Id == id);
+            if(s == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.Title = "Potvrda brisanja studenta";
+            return View();
+        }
     }
 }
