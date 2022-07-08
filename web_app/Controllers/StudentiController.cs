@@ -110,5 +110,18 @@ namespace web_app.Controllers
             ViewBag.Title = "Potvrda brisanja studenta";
             return View();
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Brisi(int id)
+        {
+            Student s = bazaPodataka.PopisStudenata.FirstOrDefault(x => x.Id == id);
+            if (s == null)
+            {
+                return HttpNotFound();
+            }
+            bazaPodataka.PopisStudenata.Remove(s);
+            bazaPodataka.SaveChanges();
+            return View("BrisiStatus");
+        }
     }
 }
