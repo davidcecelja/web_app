@@ -14,12 +14,79 @@
     }
 }
 
-<h2>Detalji</h2>
-Prezime = @Model.Prezime<br />
-Ime = @Model.Ime<br />
-Spol = @spol<br />
-Godina studija = @Model.GodinaStudija<br />
-Redovni student = @Model.RedovanStudent<br />
-Oib = @Model.Oib<br />
-Datum rođenja = @Model.DatumRodjenja.ToString("dd.MM.yyy")<br />
-Broj upisanih kolegija = @Model.BrojUpisanihKolegija<br />
+<h2>Detalji o studentu</h2>
+
+<div class="row">
+    <div class="col-md-2">
+        <strong>Prezime:</strong>
+    </div>
+    <div class="col-md-10">
+        @Model.Prezime
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-2">
+        <strong>Ime:</strong>
+    </div>
+    <div class="col-md-10">
+        @Model.Ime
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-2">
+        <strong>Spol:</strong>
+    </div>
+    <div class="col-md-10">
+        @Model.Spol
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-2">
+        <strong>Godina studija:</strong>
+    </div>
+    <div class="col-md-10">
+        @Model.GodinaStudija
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-2">
+        <strong>Redovni student:</strong>
+    </div>
+    <div class="col-md-10">
+        @Model.RedovanStudent
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-2">
+        <strong>Oib:</strong>
+    </div>
+    <div class="col-md-10">
+        @Model.Oib
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-2">
+        <strong>Datum rođenja:</strong>
+    </div>
+    <div class="col-md-10">
+        @Model.DatumRodjenja.ToString("dd.MM.yyyy")
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-2">
+        <strong>Broj upisanih kolegija:</strong>
+    </div>
+    <div class="col-md-10">
+        @Model.BrojUpisanihKolegija
+    </div>
+</div>
+<br />
+
+@Html.ActionLink("Povratak na popis studenata", "Popis", "Studenti", null, new { @class = "btn btn-primary btn-sm" })
