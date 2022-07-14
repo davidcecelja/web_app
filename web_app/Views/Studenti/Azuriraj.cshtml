@@ -5,7 +5,7 @@
 }
 @if (ViewBag.Novi)
 {
-    <h2>Kreiranje novog studenta</h2>
+    <h2>Kreiranje studenta</h2>
 }
 else
 {
@@ -14,82 +14,91 @@ else
 }
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Azuriraj", "Studenti", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true, "Ispravite podatke!");
 
-
-<table>
-        @if (!ViewBag.Novi) { 
-        <tr>
-            <td>@Html.LabelFor(model => model.Id)</td>
-            <td>@Html.TextBoxFor(model => model.Id, new { disabled = true })</td>
-        
-        </tr>
-        }
-        
-        <tr>
-            <td>@Html.LabelFor(model => model.Ime)</td>
-            <td>
-                @Html.TextBoxFor(model => model.Ime)
-                @Html.ValidationMessageFor(model => model.Ime)
-            </td>
-        </tr>
-        <tr>
-            <td>@Html.LabelFor(model => model.Prezime)</td>
-            <td>
-                @Html.TextBoxFor(model => model.Prezime)
-                @Html.ValidationMessageFor(model => model.Prezime)
-            </td>
-        </tr>
-        <tr>
-            <td>@Html.LabelFor(model => model.Spol)</td>
-            <td>
-                @Html.RadioButtonFor(model => model.Spol, 'M') Muški
-                @Html.RadioButtonFor(model => model.Spol, 'Z') Ženski
-                @Html.ValidationMessageFor(model => model.Spol)
-            </td>
-        </tr>
-        <tr>
-            <td>@Html.LabelFor(model => model.DatumRodjenja)</td>
-            <td>
-                @Html.EditorFor(model => model.DatumRodjenja)
-                @Html.ValidationMessageFor(model => model.DatumRodjenja)
-            </td>
-        </tr>
-        <tr>
-            <td>@Html.LabelFor(model => model.Oib)</td>
-            <td>
-                @Html.TextBoxFor(model => model.Oib)
-                @Html.ValidationMessageFor(model => model.Oib)
-            </td>
-        </tr>
-        <tr>
-            <td>@Html.LabelFor(model => model.GodinaStudija)</td>
-            <td>
-                @Html.EnumDropDownListFor(model => model.GodinaStudija)
-                @Html.ValidationMessageFor(model => model.GodinaStudija)
-            </td>
-        </tr>
-        <tr>
-            <td>@Html.LabelFor(model => model.RedovanStudent)</td>
-            <td>
-                @Html.CheckBoxFor(model => model.RedovanStudent)
-                @Html.ValidationMessageFor(model => model.RedovanStudent)
-            </td>
-        </tr>
-        <tr>
-            <td>@Html.LabelFor(model => model.BrojUpisanihKolegija)</td>
-            <td>
-                @Html.TextBoxFor(model => model.BrojUpisanihKolegija)
-                @Html.ValidationMessageFor(model => model.BrojUpisanihKolegija)
-            </td>
-        </tr>
-    </table>
-    @Html.ValidationSummary(true, "Spremanje nije uspjelo!");
-    <p><input type="submit" value="Spremi" /></p>
-    @Html.ActionLink("Povratak bez spremanja", "Popis", "Studenti")
-
+    if (!ViewBag.Novi)
+    {
+        <div class="form-group">
+            @Html.LabelFor(model => model.Id, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.TextBoxFor(model => model.Id, new { disabled = true, @class = "form-control" })
+        </div>
+    </div>
+    }
+    <div class="form-group">
+        @Html.LabelFor(model => model.Ime, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+        @Html.TextBoxFor(model => model.Ime, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Ime, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Prezime, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+        @Html.TextBoxFor(model => model.Prezime, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Prezime, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Spol, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            <label class="radio-inline">
+            @Html.RadioButtonFor(model => model.Spol, 'M') Muški
+            </label>
+            <label class="radio-inline">
+            @Html.RadioButtonFor(model => model.Spol, 'Z') Ženski
+            </label>
+            @Html.ValidationMessageFor(model => model.Spol)
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.DatumRodjenja, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+        @Html.EditorFor(model => model.DatumRodjenja, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.DatumRodjenja, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Oib, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+        @Html.TextBoxFor(model => model.Oib, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Oib, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.GodinaStudija, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+        @Html.EnumDropDownListFor(model => model.GodinaStudija, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.GodinaStudija, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.RedovanStudent, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+        @Html.CheckBoxFor(model => model.RedovanStudent, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.RedovanStudent, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.BrojUpisanihKolegija, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+        @Html.TextBoxFor(model => model.BrojUpisanihKolegija, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.BrojUpisanihKolegija, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <!--Button za spremanje-->
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-success">
+                <span class="glyphicon glyphicon-floppy-disk" aria-hidden="false"></span> Spremi 
+            </button>
+        </div> 
+    </div>
 }
+
+<!--Link za povratak na popis studenata-->
+@Html.ActionLink("Povratak bez spremanja", "Popis", "Studenti")
 
