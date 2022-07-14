@@ -1,10 +1,14 @@
-﻿
+﻿@using web_app.Models
+@model Student
 @{
     ViewBag.Title = "Status brisanja studenta";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Podaci uspješno izbrisani!</h2>
+<h2>@ViewBag.Title</h2>
+<br />
+
+<div class="alert alert-success" role="alert">Podaci uspješno izbrisani!</div>
 
 @Html.ActionLink("Povratak na popis studenata", "Popis");
 

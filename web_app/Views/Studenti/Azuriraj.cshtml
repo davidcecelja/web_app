@@ -78,7 +78,7 @@ else
     <div class="form-group">
         @Html.LabelFor(model => model.RedovanStudent, new { @class = "col-sm-2 control-label" })
         <div class="col-sm-10">
-        @Html.CheckBoxFor(model => model.RedovanStudent, new { @class = "form-control" })
+        @Html.CheckBoxFor(model => model.RedovanStudent)
         @Html.ValidationMessageFor(model => model.RedovanStudent, "", new { @class = "text-danger" })
         </div>
     </div>
