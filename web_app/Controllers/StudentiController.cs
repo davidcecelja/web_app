@@ -61,7 +61,10 @@ namespace web_app.Controllers
                 }
                 ViewBag.Title = "Ažuriranje podataka o studentu";
                 ViewBag.Novi = false;
-            }    
+            }
+            var smjerovi = bazaPodataka.PopisSmjerova.OrderBy(x => x.Naziv).ToList();
+            smjerovi.Insert(0, new Smjer { Sifra = "", Naziv = "Nedefinirano" });
+            ViewBag.Smjerovi = smjerovi;
             return View(student);
         }
 
@@ -102,6 +105,9 @@ namespace web_app.Controllers
                 ViewBag.Title = "Ažuriranje podataka o studentu";
                 ViewBag.Novi = false;
             }
+            var smjerovi = bazaPodataka.PopisSmjerova.OrderBy(x => x.Naziv).ToList();
+            smjerovi.Insert(0, new Smjer { Sifra = "", Naziv = "Nedefinirano" });
+            ViewBag.Smjerovi = smjerovi;
             return View(s);
         }
         public ActionResult Brisi(int? id)
