@@ -1,13 +1,13 @@
 ﻿@model web_app.Models.Smjer
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Brisanje";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Delete</h2>
+<h2>Brisanje smjera</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Jeste li sigurni da želite izbrisati zapis?</h3>
 <div>
     <h4>Smjer</h4>
     <hr />
@@ -30,12 +30,15 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <button type="submit" class="btn btn-danger">
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Izbriši
+                </button> |
+            @Html.ActionLink("Povratak na popis", "Index")
         </div>
     }
 </div>

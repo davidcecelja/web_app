@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Detalji smjera</h2>
+<h2>Podaci o smjeru</h2>
 
 <div>
     <h4>Smjer</h4>
@@ -17,6 +17,14 @@
 
         <dd>
             @Html.DisplayFor(model => model.Sifra)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Naziv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Naziv)
         </dd>
 
         <dt>

@@ -32,8 +32,8 @@
             @Html.DisplayFor(modelItem => item.Aktivnost)
         </td>
         <td>
-            @Html.ActionLink("Detalji", "Edit", new { id=item.Sifra }, new { @class = "btn btn-warning btn-sm"}) 
-            @Html.ActionLink("Ažuriraj", "Details", new { id=item.Sifra }, new { @class = "btn btn-info btn-sm" }) 
+            @Html.ActionLink("Detalji", "Details", new { id=item.Sifra }, new { @class = "btn btn-warning btn-sm"}) 
+            @Html.ActionLink("Ažuriraj", "Edit", new { id=item.Sifra }, new { @class = "btn btn-info btn-sm" }) 
             @Html.ActionLink("Izbriši", "Delete", new { id=item.Sifra }, new { @class = "btn btn-danger btn-sm" })
         </td>
     </tr>
