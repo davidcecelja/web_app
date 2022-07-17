@@ -15,7 +15,11 @@
 @using (Html.BeginForm("Popis", "Studenti", FormMethod.Get, new { @class = "form-inline" }))
 {
     @Html.TextBox("naziv", "", new { @class = "form-control", placeholder = "Naziv studenta"})
-    <div class="form-group">
+    @Html.DropDownList("Smjer",
+        new SelectList(ViewBag.Smjerovi, "Sifra", "Naziv", ""), "Svi smjerovi",
+        new { @class = "form-control", style = "margin-left: 10px;" })
+    
+    <div class="form-group" style="margin-left: 10px;">
     <label class="radio-inline">
         @Html.RadioButton("spol", "M") Muški
     </label>
@@ -41,20 +45,24 @@
         <th>Prezime</th>
         <th>Ime</th>
         <th>Oib</th>
+        <th>Smjer</th>
         <th>Redovan</th>
         <th>Akcije</th>
     </tr>
     @foreach (var student in Model)
     {
-        <tr>
-            <td>@student.Id</td>
-            <td>@student.Prezime</td>
-            <td>@student.Ime</td>
-            <td>@student.Oib</td>
-            <td>@Html.CheckBox("chbRedovan", student.RedovanStudent, new { @disabled = "disabled"})</td>
-            <td>@Html.ActionLink("info", "Detalji", new { id = student.Id }, new { @class = "btn btn-info btn-sm"})
-                @Html.ActionLink("Ažuriraj", "Azuriraj", new { id = student.Id }, new { @class = "btn btn-warning btn-sm" })
-                @Html.ActionLink("Izbriši", "Brisi", new { id = student.Id }, new { @class = "btn btn-danger btn-sm" }) </td>
-        </tr>
+    <tr>
+        <td>@student.Id</td>
+        <td>@student.Prezime</td>
+        <td>@student.Ime</td>
+        <td>@student.Oib</td>
+        <td>@(student.UpisaniSmjer?.Naziv)</td>
+        <td>@Html.CheckBox("chbRedovan", student.RedovanStudent, new { @disabled = "disabled" })</td>
+        <td>
+        @Html.ActionLink("info", "Detalji", new { id = student.Id }, new { @class = "btn btn-info btn-sm" })
+        @Html.ActionLink("Ažuriraj", "Azuriraj", new { id = student.Id }, new { @class = "btn btn-warning btn-sm" })
+        @Html.ActionLink("Izbriši", "Brisi", new { id = student.Id }, new { @class = "btn btn-danger btn-sm" })
+        </td>
+    </tr>
     }
 </table>

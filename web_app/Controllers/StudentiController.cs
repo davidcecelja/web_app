@@ -17,9 +17,11 @@ namespace web_app.Controllers
             ViewBag.Fakultet = "MEV";
             return View();
         }
-        public ActionResult Popis(string naziv, string spol)
+        public ActionResult Popis(string naziv, string spol, string smjer)
         {
             var studenti = bazaPodataka.PopisStudenata.ToList();
+            var smjeroviList = bazaPodataka.PopisSmjerova.OrderBy(x => x.Naziv).ToList();
+            ViewBag.Smjerovi = smjeroviList;
             if (!String.IsNullOrWhiteSpace(naziv))
             {
                 studenti = studenti.Where(x => x.PrezimeIme.ToUpper().Contains(naziv.ToUpper())).ToList();
@@ -27,6 +29,10 @@ namespace web_app.Controllers
             if (!String.IsNullOrWhiteSpace(spol))
             {
                 studenti = studenti.Where(x => x.Spol == spol).ToList();
+            }
+            if (!String.IsNullOrWhiteSpace(smjer))
+            {
+                studenti = studenti.Where(x => x.SifraSmjera == smjer).ToList();
             }
             return View(studenti);
         }
