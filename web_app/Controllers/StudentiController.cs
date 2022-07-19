@@ -143,5 +143,24 @@ namespace web_app.Controllers
             bazaPodataka.SaveChanges();
             return View("BrisiStatus");
         }
+        public ActionResult PopisPartial(string naziv, string spol, string smjer, string sort, int? page)
+        {
+            var studenti = bazaPodataka.PopisStudenata.ToList();
+            var smjeroviList = bazaPodataka.PopisSmjerova.OrderBy(x => x.Naziv).ToList();
+            ViewBag.Smjerovi = smjeroviList;
+            if (!String.IsNullOrWhiteSpace(naziv))
+            {
+                studenti = studenti.Where(x => x.PrezimeIme.ToUpper().Contains(naziv.ToUpper())).ToList();
+            }
+            if (!String.IsNullOrWhiteSpace(spol))
+            {
+                studenti = studenti.Where(x => x.Spol == spol).ToList();
+            }
+            if (!String.IsNullOrWhiteSpace(smjer))
+            {
+                studenti = studenti.Where(x => x.SifraSmjera == smjer).ToList();
+            }
+            return View(studenti);
+        }
     }
 }
