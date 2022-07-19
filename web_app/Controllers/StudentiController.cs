@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Net;
+using PagedList;
 
 namespace web_app.Controllers
 {
@@ -18,23 +19,10 @@ namespace web_app.Controllers
             return View();
         }
         public ActionResult Popis(string naziv, string spol, string smjer)
-        {
-            var studenti = bazaPodataka.PopisStudenata.ToList();
+        {   
             var smjeroviList = bazaPodataka.PopisSmjerova.OrderBy(x => x.Naziv).ToList();
             ViewBag.Smjerovi = smjeroviList;
-            if (!String.IsNullOrWhiteSpace(naziv))
-            {
-                studenti = studenti.Where(x => x.PrezimeIme.ToUpper().Contains(naziv.ToUpper())).ToList();
-            }
-            if (!String.IsNullOrWhiteSpace(spol))
-            {
-                studenti = studenti.Where(x => x.Spol == spol).ToList();
-            }
-            if (!String.IsNullOrWhiteSpace(smjer))
-            {
-                studenti = studenti.Where(x => x.SifraSmjera == smjer).ToList();
-            }
-            return View(studenti);
+            return View();
         }
         public ActionResult Detalji(int? id)
         {
@@ -143,11 +131,18 @@ namespace web_app.Controllers
             bazaPodataka.SaveChanges();
             return View("BrisiStatus");
         }
-        public ActionResult PopisPartial(string naziv, string spol, string smjer, string sort, int? page)
+        public ActionResult PopisPartial(string naziv, string spol, string sort, string smjer, int? page)
         {
+            ViewBag.Sortiranje = sort;
+            ViewBag.NazivSort = String.IsNullOrEmpty(sort) ? "naziv_desc" : "";
+            ViewBag.SmjerSort = sort == "smjer" ? "smjer_desc" : "smjer";
+            ViewBag.Smjer = smjer;
+            ViewBag.Naziv = naziv;
+            ViewBag.Spol = spol;
+
             var studenti = bazaPodataka.PopisStudenata.ToList();
-            var smjeroviList = bazaPodataka.PopisSmjerova.OrderBy(x => x.Naziv).ToList();
-            ViewBag.Smjerovi = smjeroviList;
+            
+            // filtriranje
             if (!String.IsNullOrWhiteSpace(naziv))
             {
                 studenti = studenti.Where(x => x.PrezimeIme.ToUpper().Contains(naziv.ToUpper())).ToList();
@@ -160,7 +155,26 @@ namespace web_app.Controllers
             {
                 studenti = studenti.Where(x => x.SifraSmjera == smjer).ToList();
             }
-            return View(studenti);
+            switch (sort)
+            {
+                case "naziv_desc":
+                    studenti = studenti.OrderByDescending(s => s.PrezimeIme).ToList();
+                    break;
+                case "smjer":
+                    studenti = studenti.OrderBy(s => s.SifraSmjera).ToList();
+                    break;
+                case "smjer_desc":
+                    studenti = studenti.OrderByDescending(s => s.SifraSmjera).ToList();
+                    break;
+                default:
+                    studenti = studenti.OrderBy(s => s.PrezimeIme).ToList();
+                    break;
+            }
+
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+
+            return PartialView("_PartialPopis", studenti.ToPagedList(pageNumber, pageSize));
         }
     }
 }
