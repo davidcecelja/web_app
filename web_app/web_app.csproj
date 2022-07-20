@@ -192,7 +192,9 @@
     </Compile>
     <Compile Include="Models\BazaDbContext.cs" />
     <Compile Include="Models\GodinaStudija.cs" />
+    <Compile Include="Models\Korisnik.cs" />
     <Compile Include="Models\OIB.cs" />
+    <Compile Include="Models\Ovlast.cs" />
     <Compile Include="Models\Smjer.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\StudentiDB.cs" />
