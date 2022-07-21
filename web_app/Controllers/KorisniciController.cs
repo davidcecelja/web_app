@@ -19,12 +19,19 @@ namespace web_app.Controllers
             var listaKorisnika = bazaPodataka.PopisKorisnika.OrderBy(x => x.SifraOvlasti).ThenBy(x => x.Prezime).ToList();
             return View(listaKorisnika);
         }
+
+        [HttpGet]
+        [AllowAnonymous]
         public ActionResult Prijava(string returnUrl)
         {
             KorisnikPrijava model = new KorisnikPrijava();
             ViewBag.ReturnUrl = returnUrl;
             return View(model);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [AllowAnonymous]
         public ActionResult Prijava(KorisnikPrijava model, string returnUrl)
         {
             if (ModelState.IsValid)

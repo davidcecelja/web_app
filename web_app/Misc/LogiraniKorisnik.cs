@@ -12,7 +12,9 @@ namespace web_app.Misc
         public string KorisnickoIme { get; set; }
         public string PrezimeIme { get; set; }
         public string Ovlast { get; set; }
+
         public IIdentity Identity { get; set; }
+
         public bool IsInRole(string role)
         {
             if (Ovlast == role) return true;
@@ -27,7 +29,7 @@ namespace web_app.Misc
         }
         public LogiraniKorisnik(string korisnickoIme)
         {
-            this.Identity = new GenericIdentity(KorisnickoIme);
+            this.Identity = new GenericIdentity(korisnickoIme);
             this.KorisnickoIme = korisnickoIme;
         }
     }
