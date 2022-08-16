@@ -73,11 +73,53 @@ namespace web_app.Controllers
             ModelState.AddModelError("", "Neispravno korisničko ime ili lozinka");
             return View();
         }
+
         public ActionResult Odjava()
         {
             FormsAuthentication.SignOut();
             Session.Abandon();
             return RedirectToAction("Index", "Home");
+        }
+
+        [HttpGet]
+        public ActionResult Registracija()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Registracija(Korisnik model)
+        {
+            if (!String.IsNullOrWhiteSpace(model.KorisnickoIme))
+            {
+                var korImeZauzeto = bazaPodataka.PopisKorisnika.Any(x => x.KorisnickoIme == model.KorisnickoIme);
+                if (korImeZauzeto)
+                {
+                    ModelState.AddModelError("KorisnickoIme", "Korisničko ime je već zauzeto");
+                }
+            }
+            if (!String.IsNullOrWhiteSpace(model.Email))
+            {
+                var emailZauzet = bazaPodataka.PopisKorisnika.Any(x => x.Email == model.Email);
+                if (emailZauzet)
+                {
+                    ModelState.AddModelError("Email", "Email je već zauzet");
+                }
+            }
+            if (ModelState.IsValid)
+            {
+                model.Lozinka = Misc.PasswordHelper.IzracunajHash(model.LozinkaUnos);
+                model.SifraOvlasti = "MO";
+
+                bazaPodataka.PopisKorisnika.Add(model);
+                bazaPodataka.SaveChanges();
+
+                return View("RegistracijaOK");
+            }
+            var ovlasti = bazaPodataka.PopisOvlasti.OrderBy(x => x.Naziv).ToList();
+            ViewBag.Ovlasti = ovlasti;
+
+            return View(model);
         }
     }
 }
